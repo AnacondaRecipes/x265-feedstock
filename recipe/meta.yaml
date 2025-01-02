@@ -20,7 +20,7 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - cmake
-    - nasm
+    - nasm  # [not (osx and arm64)]
     - make  # [not win]
 
 test:
