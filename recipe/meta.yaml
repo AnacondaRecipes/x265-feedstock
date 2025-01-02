@@ -9,12 +9,7 @@ source:
   sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
 
 build:
-  number: 3
-  run_exports:
-    # 2022/03/01 hmaarrfk
-    # Seems like the SO name changes every minor version
-    # https://abi-laboratory.pro/index.php?view=timeline&l=x265
-    - {{ pin_subpackage('x265', max_pin='x.x') }}
+  number: 0
 
 requirements:
   build:
@@ -35,9 +30,9 @@ test:
     - if not exist %LIBRARY_PREFIX%\bin\libx265.dll exit 1        # [win]
     # Make sure not to install static libraries
     - if not exist %LIBRARY_PREFIX%\lib\x265-static.lib exit 1        # [win]
-    - x265 --version                                 # [build_platform == target_platform]
-    - x265 --version 2>&1 | grep "8bit"              # [build_platform == target_platform and unix]
-    - x265 --version 2>&1 | grep "8bit+10bit+12bit"  # [build_platform == target_platform and (x86_64 or arm64) and unix]
+    - x265 --version
+    - x265 --version 2>&1 | grep "8bit"              # [unix]
+    - x265 --version 2>&1 | grep "8bit+10bit+12bit"  # [(x86_64 or arm64 or aarch64) and unix]
 
 about:
   home: https://www.x265.org/
