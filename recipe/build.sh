@@ -55,7 +55,7 @@ cd ../8bit
 cmake ${CMAKE_ARGS} ../source                    \
     -DCMAKE_BUILD_TYPE="Release"                 \
     -DCMAKE_INSTALL_PREFIX=${PREFIX}             \
-    -DENABLE_SHARED=TRUE                         \
+    -DENABLE_SHARED=ON                           \
     -DLINKED_10BIT=$LINKED_BITS                  \
     -DLINKED_12BIT=$LINKED_BITS                  \
     -DEXTRA_LINK_FLAGS='-L .'                    \
