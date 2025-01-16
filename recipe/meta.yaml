@@ -7,6 +7,8 @@ package:
 source:
   url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_{{ version }}.tar.gz
   sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
+  # patches:
+  #   - 0001-fix-install-scripts.patch
 
 build:
   number: 0
@@ -17,6 +19,8 @@ requirements:
     - cmake
     - nasm  # [not (osx and arm64)]
     - make  # [not win]
+    - patch     # [not win]
+    - m2-patch  # [win]
 
 test:
   commands:

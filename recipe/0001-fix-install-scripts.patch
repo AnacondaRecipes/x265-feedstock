@@ -1,0 +1,36 @@
+From 515185fe0ed716fb301981f7bfdd43394ccfb715 Mon Sep 17 00:00:00 2001
+From: Jack Olivieri <jolivieri@anaconda.com>
+Date: Mon, 6 Jan 2025 21:12:35 +0100
+Subject: [PATCH] fix install scripts
+
+---
+ source/CMakeLists.txt | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/source/CMakeLists.txt b/source/CMakeLists.txt
+index 1d1a613aa..0e27f69f2 100644
+--- a/source/CMakeLists.txt
++++ b/source/CMakeLists.txt
+@@ -586,10 +586,19 @@ install(TARGETS x265-static
+     LIBRARY DESTINATION ${LIB_INSTALL_DIR}
+     ARCHIVE DESTINATION ${LIB_INSTALL_DIR})
+ 
++install(TARGETS x265-shared
++        LIBRARY DESTINATION ${LIB_INSTALL_DIR}
++        ARCHIVE DESTINATION ${LIB_INSTALL_DIR}
++        RUNTIME DESTINATION ${BIN_INSTALL_DIR})
++endif()
++
+ if(ENABLE_HDR10_PLUS)
+     install(TARGETS hdr10plus-static
+         LIBRARY DESTINATION ${LIB_INSTALL_DIR}
+         ARCHIVE DESTINATION ${LIB_INSTALL_DIR})
++    install(TARGETS hdr10plus-shared
++        LIBRARY DESTINATION ${LIB_INSTALL_DIR}
++        ARCHIVE DESTINATION ${LIB_INSTALL_DIR})
+ endif()
+ 
+ if(SVTHEVC_FOUND)
+-- 
+2.39.5 (Apple Git-154)
+
