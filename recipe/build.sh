@@ -6,7 +6,7 @@
 
 set -ex
 
-mkdir 8bit 10bit 12bit
+mkdir -p 8bit 10bit 12bit
 
 cd 8bit
 
@@ -21,7 +21,8 @@ else
     cmake ${CMAKE_ARGS} ../source        \
         -DHIGH_BIT_DEPTH=ON              \
         -DEXPORT_C_API=OFF               \
-        -DENABLE_SHARED=OFF              \
+        -DENABLE_SHARED=ON               \
+        -DENABLE_HDR10_PLUS=ON           \
         -DENABLE_CLI=OFF                 \
         -DMAIN12=ON                      \
         -DCMAKE_BUILD_TYPE="Release"     \
@@ -34,9 +35,9 @@ else
     cmake ${CMAKE_ARGS} ../source        \
         -DHIGH_BIT_DEPTH=ON              \
         -DEXPORT_C_API=OFF               \
-        -DENABLE_SHARED=OFF              \
-        -DENABLE_CLI=OFF                 \
+        -DENABLE_SHARED=ON               \
         -DENABLE_HDR10_PLUS=ON           \
+        -DENABLE_CLI=OFF                 \
         -DCMAKE_BUILD_TYPE="Release"     \
         -DCMAKE_INSTALL_PREFIX=${PREFIX}
 
@@ -56,6 +57,8 @@ cmake ${CMAKE_ARGS} ../source                    \
     -DCMAKE_BUILD_TYPE="Release"                 \
     -DCMAKE_INSTALL_PREFIX=${PREFIX}             \
     -DENABLE_SHARED=ON                           \
+    -DENABLE_HDR10_PLUS=ON                       \
+    -DLINKED_8BIT=ON                             \
     -DLINKED_10BIT=$LINKED_BITS                  \
     -DLINKED_12BIT=$LINKED_BITS                  \
     -DEXTRA_LINK_FLAGS='-L .'                    \
