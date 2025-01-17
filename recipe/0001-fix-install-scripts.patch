@@ -1,27 +1,25 @@
-From 515185fe0ed716fb301981f7bfdd43394ccfb715 Mon Sep 17 00:00:00 2001
+From e638733b7b376a54065e3adecf50e16466b9b9a3 Mon Sep 17 00:00:00 2001
 From: Jack Olivieri <jolivieri@anaconda.com>
 Date: Mon, 6 Jan 2025 21:12:35 +0100
 Subject: [PATCH] fix install scripts
 
 ---
- source/CMakeLists.txt | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ source/CMakeLists.txt | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
 diff --git a/source/CMakeLists.txt b/source/CMakeLists.txt
-index 1d1a613aa..0e27f69f2 100644
+index 1d1a613aa..9f18bc848 100644
 --- a/source/CMakeLists.txt
 +++ b/source/CMakeLists.txt
-@@ -586,10 +586,19 @@ install(TARGETS x265-static
+@@ -582,6 +582,7 @@ endif()
+ if(SVTHEVC_FOUND)
+     target_link_libraries(x265-static ${SVT_HEVC_LIBRARY})
+ endif()
++
+ install(TARGETS x265-static
      LIBRARY DESTINATION ${LIB_INSTALL_DIR}
      ARCHIVE DESTINATION ${LIB_INSTALL_DIR})
- 
-+install(TARGETS x265-shared
-+        LIBRARY DESTINATION ${LIB_INSTALL_DIR}
-+        ARCHIVE DESTINATION ${LIB_INSTALL_DIR}
-+        RUNTIME DESTINATION ${BIN_INSTALL_DIR})
-+endif()
-+
- if(ENABLE_HDR10_PLUS)
+@@ -590,6 +591,9 @@ if(ENABLE_HDR10_PLUS)
      install(TARGETS hdr10plus-static
          LIBRARY DESTINATION ${LIB_INSTALL_DIR}
          ARCHIVE DESTINATION ${LIB_INSTALL_DIR})
@@ -31,6 +29,24 @@ index 1d1a613aa..0e27f69f2 100644
  endif()
  
  if(SVTHEVC_FOUND)
+@@ -612,6 +616,7 @@ if((WIN32 AND ENABLE_CLI) OR (WIN32 AND ENABLE_SHARED))
+         install(FILES "${PROJECT_BINARY_DIR}/libx265.pdb" DESTINATION ${BIN_INSTALL_DIR} CONFIGURATIONS RelWithDebInfo OPTIONAL NAMELINK_ONLY)
+     endif()
+ endif()
++
+ if(CMAKE_RC_COMPILER)
+     # The resource compiler does not need CFLAGS or macro defines. It
+     # often breaks them
+@@ -789,3 +794,8 @@ if(hasParent)
+         set(PLATFORM_LIBS ${PLATFORM_LIBS} PARENT_SCOPE)
+     endif(PLATFORM_LIBS)
+ endif(hasParent)
++
++install(TARGETS x265-shared
++        LIBRARY DESTINATION ${LIB_INSTALL_DIR}
++        ARCHIVE DESTINATION ${LIB_INSTALL_DIR})
++endif()
+\ No newline at end of file
 -- 
 2.39.5 (Apple Git-154)
 
