@@ -38,7 +38,7 @@ index 22fb79d44..c9810dd0a 100644
              add_definitions(-DHAVE_NEON)
          else()
 -            set(ARM_ARGS -mcpu=native -mfloat-abi=hard -mfpu=vfp -marm)
-+            set(ARM_ARGS -mcpu=native -marm)
++            set(ARM_ARGS -mcpu=native)
          endif()
      endif()
      add_definitions(${ARM_ARGS})
