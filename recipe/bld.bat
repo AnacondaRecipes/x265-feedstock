@@ -4,7 +4,7 @@ if errorlevel 1 exit 1
 cd 12bit
 if errorlevel 1 exit 1
 
-cmake --trace-expand %CMAKE_ARGS% ..\source         ^
+cmake -G "Visual Studio 17 2022" %CMAKE_ARGS% ..\source         ^
     -DCMAKE_BUILD_TYPE=Release       ^
     -DHIGH_BIT_DEPTH=ON              ^
     -DEXPORT_C_API=OFF               ^
@@ -23,7 +23,7 @@ if errorlevel 1 exit 1
 cd 10bit
 if errorlevel 1 exit 1
 
-cmake %CMAKE_ARGS% ..\source         ^
+cmake -G "Visual Studio 17 2022" %CMAKE_ARGS% ..\source         ^
     -DCMAKE_BUILD_TYPE=Release       ^
     -DHIGH_BIT_DEPTH=ON              ^
     -DEXPORT_C_API=OFF               ^
@@ -45,7 +45,7 @@ copy /y ..\10bit\Release\x265-static.lib x265-static_main10.lib
 copy /y ..\12bit\Release\x265-static.lib x265-static_main12.lib
 set EXTRA_LIBS="-DEXTRA_LIB=x265-static_main10.lib;x265-static_main12.lib"
 
-cmake %CMAKE_ARGS% ..\source                     ^
+cmake -G "Visual Studio 17 2022" %CMAKE_ARGS% ..\source                     ^
     -DCMAKE_BUILD_TYPE=Release                   ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX%      ^
     -DENABLE_SHARED=TRUE                         ^
