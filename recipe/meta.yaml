@@ -25,6 +25,7 @@ requirements:
     - make  # [not win]
     - patch     # [not win]
     - m2-patch  # [win]
+    # Upstream is using git in cmake to detect source version and configure the build process
     - git  # [not win]
 
 test:
