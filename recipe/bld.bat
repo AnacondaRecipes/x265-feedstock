@@ -4,7 +4,7 @@ if errorlevel 1 exit 1
 cd 12bit
 if errorlevel 1 exit 1
 
-cmake %CMAKE_ARGS% ..\source         ^
+cmake --trace-expand %CMAKE_ARGS% ..\source         ^
     -DCMAKE_BUILD_TYPE=Release       ^
     -DHIGH_BIT_DEPTH=ON              ^
     -DEXPORT_C_API=OFF               ^
@@ -23,7 +23,7 @@ if errorlevel 1 exit 1
 cd 10bit
 if errorlevel 1 exit 1
 
-cmake --trace-expand %CMAKE_ARGS% ..\source         ^
+cmake %CMAKE_ARGS% ..\source         ^
     -DCMAKE_BUILD_TYPE=Release       ^
     -DHIGH_BIT_DEPTH=ON              ^
     -DEXPORT_C_API=OFF               ^
