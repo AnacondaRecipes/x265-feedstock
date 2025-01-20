@@ -1,0 +1,44 @@
+diff --git a/source/CMakeLists.txt b/source/CMakeLists.txt
+index 5c6dda9e8..60b841cbf 100755
+--- a/source/CMakeLists.txt
++++ b/source/CMakeLists.txt
+@@ -270,14 +270,14 @@ if(GCC)
+     endif()
+     if(ARM AND CROSS_COMPILE_ARM)
+         message(STATUS "cross compile arm")
+-		set(ARM_ARGS -march=armv6 -mfloat-abi=soft -mfpu=vfp -marm -fPIC)
++		set(ARM_ARGS -march=armv6 -fPIC)
+     elseif(ARM)
+         find_package(Neon)
+         if(CPU_HAS_NEON)
+-            set(ARM_ARGS -mcpu=native -mfloat-abi=hard -mfpu=neon -marm -fPIC)
++            set(ARM_ARGS -mcpu=native -fPIC)
+             add_definitions(-DHAVE_NEON)
+         else()
+-            set(ARM_ARGS -mcpu=native -mfloat-abi=hard -mfpu=vfp -marm)
++            set(ARM_ARGS -mcpu=native)
+         endif()
+     endif()
+     if(ARM64)
+diff --git a/source/dynamicHDR10/CMakeLists.txt b/source/dynamicHDR10/CMakeLists.txt
+index 22fb79d44..c9810dd0a 100644
+--- a/source/dynamicHDR10/CMakeLists.txt
++++ b/source/dynamicHDR10/CMakeLists.txt
+@@ -43,14 +43,14 @@ if(GCC)
+         endif()
+     endif()
+     if(ARM AND CROSS_COMPILE_ARM)
+-        set(ARM_ARGS -march=armv6 -mfloat-abi=soft -mfpu=vfp -marm -fPIC)
++        set(ARM_ARGS -march=armv6 -fPIC)
+     elseif(ARM)
+         find_package(Neon)
+         if(CPU_HAS_NEON)
+-            set(ARM_ARGS -mcpu=native -mfloat-abi=hard -mfpu=neon -marm -fPIC)
++            set(ARM_ARGS -mcpu=native -fPIC)
+             add_definitions(-DHAVE_NEON)
+         else()
+-            set(ARM_ARGS -mcpu=native -mfloat-abi=hard -mfpu=vfp -marm)
++            set(ARM_ARGS -mcpu=native -marm)
+         endif()
+     endif()
+     add_definitions(${ARM_ARGS})
