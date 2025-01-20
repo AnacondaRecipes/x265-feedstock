@@ -40,7 +40,7 @@ test:
     - if not exist %LIBRARY_PREFIX%\lib\x265-static.lib exit 1        # [win]
     - x265 --version
     - x265 --version 2>&1 | grep "8bit"              # [unix]
-    - x265 --version 2>&1 | grep "8bit+10bit+12bit"  # [(x86_64 or arm64) and unix]
+    - x265 --version 2>&1 | grep "8bit+10bit+12bit"  # [(x86_64 or arm64) and unix and (not osx)]
 
 about:
   home: https://www.x265.org/
