@@ -1,5 +1,5 @@
 diff --git a/source/common/CMakeLists.txt b/source/common/CMakeLists.txt
-index 12b643ad5..83fc07ec5 100644
+index 12b643ad5..4183e6d6f 100644
 --- a/source/common/CMakeLists.txt
 +++ b/source/common/CMakeLists.txt
 @@ -131,9 +131,11 @@ endif()
@@ -9,7 +9,7 @@ index 12b643ad5..83fc07ec5 100644
 -check_symbol_exists(strtok_r "string.h" HAVE_STRTOK_R)
 -if(HAVE_STRTOK_R)
 -    set_source_files_properties(param.cpp PROPERTIES COMPILE_FLAGS -DHAVE_STRTOK_R=1)
-+if(NOT WIN)
++if(NOT WIN32)
 +    check_symbol_exists(strtok_r "string.h" HAVE_STRTOK_R)
 +    if(HAVE_STRTOK_R)
 +        set_source_files_properties(param.cpp PROPERTIES COMPILE_FLAGS -DHAVE_STRTOK_R=1)
