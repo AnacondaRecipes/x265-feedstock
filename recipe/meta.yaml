@@ -11,6 +11,8 @@ source:
     - 0001-fix-install-scripts.patch
 
 build:
+  # Missing nasm for s390x
+  skip: True  # [s390x]
   number: 0
 
 requirements:
@@ -21,6 +23,7 @@ requirements:
     - make  # [not win]
     - patch     # [not win]
     - m2-patch  # [win]
+    - git  # [not win]
 
 test:
   commands:
