@@ -11,7 +11,7 @@ source:
     - 0001-remove-unsupported-compiler-options-from-arm.patch
     - 0002-add-rpath-for-hdr10plus-shared.patch
     - 0003-do-not-look-for-strtok_r-on-win.patch
-    - 0004-add-arm64-as-arm-processor.patch
+    - 0004-force-10-12-bit-build-on-aarch64.patch
 
 build:
   # Missing nasm for s390x
@@ -42,8 +42,7 @@ test:
     # Make sure not to install static libraries
     - if not exist %LIBRARY_PREFIX%\lib\x265-static.lib exit 1        # [win]
     - x265 --version
-    - x265 --version 2>&1 | grep "8bit"              # [unix]
-    - x265 --version 2>&1 | grep "8bit+10bit+12bit"  # [(x86_64 or arm64) and unix and (not osx)]
+    - x265 --version 2>&1 | grep "8bit+10bit+12bit"
 
 about:
   home: https://www.x265.org/

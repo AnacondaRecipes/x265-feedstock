@@ -10,44 +10,37 @@ mkdir -p 8bit 10bit 12bit
 
 cd 8bit
 
-if [[ $target_platform == linux-aarch64-disable-this-if ]]; then
-    # linux-aarch64 can not build 10bit/12bit support
-    EXTRA_LIBS=""
-    LINKED_BITS="OFF"
-else
+# --- Pixel depth 12
+cd ../12bit
+cmake ${CMAKE_ARGS} ../source        \
+    -DHIGH_BIT_DEPTH=ON              \
+    -DEXPORT_C_API=OFF               \
+    -DENABLE_SHARED=OFF              \
+    -DENABLE_CLI=OFF                 \
+    -DMAIN12=ON                      \
+    -DCMAKE_BUILD_TYPE="Release"     \
+    -DCMAKE_INSTALL_PREFIX=${PREFIX}
 
-    # --- Pixel depth 12
-    cd ../12bit
-    cmake ${CMAKE_ARGS} ../source        \
-        -DHIGH_BIT_DEPTH=ON              \
-        -DEXPORT_C_API=OFF               \
-        -DENABLE_SHARED=OFF              \
-        -DENABLE_CLI=OFF                 \
-        -DMAIN12=ON                      \
-        -DCMAKE_BUILD_TYPE="Release"     \
-        -DCMAKE_INSTALL_PREFIX=${PREFIX}
+make -j${CPU_COUNT}
 
-    make -j${CPU_COUNT}
+# --- Pixel depth 10
+cd ../10bit
+cmake ${CMAKE_ARGS} ../source        \
+    -DHIGH_BIT_DEPTH=ON              \
+    -DEXPORT_C_API=OFF               \
+    -DENABLE_SHARED=OFF              \
+    -DENABLE_CLI=OFF                 \
+    -DENABLE_HDR10_PLUS=ON           \
+    -DCMAKE_BUILD_TYPE="Release"     \
+    -DCMAKE_INSTALL_PREFIX=${PREFIX}
 
-    # --- Pixel depth 10
-    cd ../10bit
-    cmake ${CMAKE_ARGS} ../source        \
-        -DHIGH_BIT_DEPTH=ON              \
-        -DEXPORT_C_API=OFF               \
-        -DENABLE_SHARED=OFF              \
-        -DENABLE_CLI=OFF                 \
-        -DENABLE_HDR10_PLUS=ON           \
-        -DCMAKE_BUILD_TYPE="Release"     \
-        -DCMAKE_INSTALL_PREFIX=${PREFIX}
+make -j${CPU_COUNT}
 
-    make -j${CPU_COUNT}
-
-    EXTRA_LIBS="-DEXTRA_LIB=x265_main10.a;x265_main12.a"
-    cd ../8bit
-    ln -sf ../10bit/libx265.a libx265_main10.a
-    ln -sf ../12bit/libx265.a libx265_main12.a
-    LINKED_BITS="ON"
-fi
+EXTRA_LIBS="-DEXTRA_LIB=x265_main10.a;x265_main12.a"
+cd ../8bit
+ln -sf ../10bit/libx265.a libx265_main10.a
+ln -sf ../12bit/libx265.a libx265_main12.a
+LINKED_BITS="ON"
 
 # --- Pixel depth 8, and put it all together
 cd ../8bit
