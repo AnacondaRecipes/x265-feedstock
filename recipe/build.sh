@@ -10,8 +10,8 @@ mkdir -p 8bit 10bit 12bit
 
 cd 8bit
 
-if [[ $target_platform == linux-ppc64le || $target_platform == osx-64 || $target_platform == osx-arm64 ]]; then
-    # linux-ppc64le and linux-aarch64 can not build 10bit/12bit support
+if [[ $target_platform == aarch64 ]]; then
+    # linux-aarch64 can not build 10bit/12bit support
     EXTRA_LIBS=""
     LINKED_BITS="OFF"
 else
