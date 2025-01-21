@@ -21,7 +21,7 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - cmake
-    - nasm  # [not (osx and arm64)]
+    - nasm  # [x86]
     - make  # [not win]
     - patch     # [not win]
     - m2-patch  # [win]
@@ -59,3 +59,5 @@ about:
 extra:
   recipe-maintainers:
     - matthiasdiener
+  skip-lints:
+    - invalid_url
