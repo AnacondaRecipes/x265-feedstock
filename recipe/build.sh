@@ -21,7 +21,7 @@ else
     cmake ${CMAKE_ARGS} ../source        \
         -DHIGH_BIT_DEPTH=ON              \
         -DEXPORT_C_API=OFF               \
-        -DENABLE_SHARED=ON               \
+        -DENABLE_SHARED=OFF              \
         -DENABLE_HDR10_PLUS=ON           \
         -DENABLE_CLI=OFF                 \
         -DMAIN12=ON                      \
@@ -35,7 +35,7 @@ else
     cmake ${CMAKE_ARGS} ../source        \
         -DHIGH_BIT_DEPTH=ON              \
         -DEXPORT_C_API=OFF               \
-        -DENABLE_SHARED=ON               \
+        -DENABLE_SHARED=OFF              \
         -DENABLE_HDR10_PLUS=ON           \
         -DENABLE_CLI=OFF                 \
         -DCMAKE_BUILD_TYPE="Release"     \
