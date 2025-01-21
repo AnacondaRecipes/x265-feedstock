@@ -22,7 +22,6 @@ else
         -DHIGH_BIT_DEPTH=ON              \
         -DEXPORT_C_API=OFF               \
         -DENABLE_SHARED=OFF              \
-        -DENABLE_HDR10_PLUS=ON           \
         -DENABLE_CLI=OFF                 \
         -DMAIN12=ON                      \
         -DCMAKE_BUILD_TYPE="Release"     \
@@ -36,8 +35,8 @@ else
         -DHIGH_BIT_DEPTH=ON              \
         -DEXPORT_C_API=OFF               \
         -DENABLE_SHARED=OFF              \
-        -DENABLE_HDR10_PLUS=ON           \
         -DENABLE_CLI=OFF                 \
+        -DENABLE_HDR10_PLUS=ON           \
         -DCMAKE_BUILD_TYPE="Release"     \
         -DCMAKE_INSTALL_PREFIX=${PREFIX}
 
@@ -56,9 +55,7 @@ cd ../8bit
 cmake ${CMAKE_ARGS} ../source                    \
     -DCMAKE_BUILD_TYPE="Release"                 \
     -DCMAKE_INSTALL_PREFIX=${PREFIX}             \
-    -DENABLE_SHARED=ON                           \
-    -DENABLE_HDR10_PLUS=ON                       \
-    -DLINKED_8BIT=ON                             \
+    -DENABLE_SHARED=TRUE                         \
     -DLINKED_10BIT=$LINKED_BITS                  \
     -DLINKED_12BIT=$LINKED_BITS                  \
     -DEXTRA_LINK_FLAGS='-L .'                    \
