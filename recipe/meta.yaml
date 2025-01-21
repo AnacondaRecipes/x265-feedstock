@@ -8,10 +8,10 @@ source:
   url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_{{ version }}.tar.gz
   sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
   patches:
-    - 0001-remove-unsupported-compiler-options-from-arm.patch
-    - 0002-add-rpath-for-hdr10plus-shared.patch
-    - 0003-do-not-look-for-strtok_r-on-win.patch
-    - 0004-force-10-12-bit-build-on-aarch64.patch
+    - patches/0001-remove-unsupported-compiler-options-from-arm.patch
+    - patches/0002-add-rpath-for-hdr10plus-shared.patch
+    - patches/0003-do-not-look-for-strtok_r-on-win.patch
+    - patches/0004-force-10-12-bit-build-on-aarch64.patch
 
 build:
   # Missing nasm for s390x
