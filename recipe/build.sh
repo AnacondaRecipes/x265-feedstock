@@ -6,12 +6,10 @@
 
 set -ex
 
-mkdir -p 8bit 10bit 12bit
-
-cd 8bit
+mkdir 8bit 10bit 12bit
 
 # --- Pixel depth 12
-cd ../12bit
+cd 12bit
 cmake ${CMAKE_ARGS} ../source        \
     -DHIGH_BIT_DEPTH=ON              \
     -DEXPORT_C_API=OFF               \
@@ -43,7 +41,6 @@ ln -sf ../12bit/libx265.a libx265_main12.a
 LINKED_BITS="ON"
 
 # --- Pixel depth 8, and put it all together
-cd ../8bit
 
 cmake ${CMAKE_ARGS} ../source                    \
     -DCMAKE_BUILD_TYPE="Release"                 \
