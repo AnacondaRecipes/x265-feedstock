@@ -10,7 +10,7 @@ mkdir -p 8bit 10bit 12bit
 
 cd 8bit
 
-if [[ $target_platform == linux-aarch64 ]]; then
+if [[ $target_platform == linux-aarch64-disable-this-if ]]; then
     # linux-aarch64 can not build 10bit/12bit support
     EXTRA_LIBS=""
     LINKED_BITS="OFF"
