@@ -11,6 +11,7 @@ source:
     - 0001-remove-unsupported-compiler-options-from-arm.patch
     - 0002-add-rpath-for-hdr10plus-shared.patch
     - 0003-do-not-look-for-strtok_r-on-win.patch
+    - 0004-add-arm64-as-arm-processor.patch
 
 build:
   # Missing nasm for s390x
