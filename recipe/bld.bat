@@ -15,7 +15,7 @@ cmake %CMAKE_ARGS% ..\source         ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX%
 if errorlevel 1 exit 1
 
-cmake --build . --config Release --parallel %CPU_COUNT%
+cmake --build . --config Release
 if errorlevel 1 exit 1
 cd ..
 
@@ -34,7 +34,7 @@ cmake %CMAKE_ARGS% ..\source         ^
     -DENABLE_HDR10_PLUS=ON           ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX%
 if errorlevel 1 exit 1
-cmake --build . --config Release --parallel %CPU_COUNT%
+cmake --build . --config Release
 if errorlevel 1 exit 1
 cd ..
 
@@ -57,7 +57,7 @@ cmake %CMAKE_ARGS% ..\source                     ^
     -DEXTRA_LINK_FLAGS="-L."                     ^
     %EXTRA_LIBS%
 if errorlevel 1 exit 1
-cmake --build . --target install --config Release --parallel %CPU_COUNT%
+cmake --build . --target install --config Release
 if errorlevel 1 exit 1
 
 del /Q /F %LIBRARY_PREFIX%\lib\x256-static.lib
