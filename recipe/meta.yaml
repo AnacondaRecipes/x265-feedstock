@@ -15,7 +15,8 @@ source:
 
 build:
   # Missing nasm for s390x
-  skip: True  # [s390x]
+  # win is not used downstream
+  skip: True  # [s390x or win]
   number: 0
 
 requirements:
