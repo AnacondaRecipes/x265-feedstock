@@ -41,7 +41,7 @@ test:
     - if not exist %LIBRARY_PREFIX%\bin\libx265.dll exit 1        # [win]
     - if not exist %LIBRARY_PREFIX%\bin\x265.exe exit 1          # [win]
     # Make sure not to install static libraries
-    - if not exist %LIBRARY_PREFIX%\lib\x265-static.lib exit 1        # [win]
+    - if exist %LIBRARY_PREFIX%\lib\x265-static.lib exit 1        # [win]
     - x265 --version
     - x265 --version 2>&1 | grep "8bit+10bit+12bit"
 
