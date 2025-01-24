@@ -7,21 +7,28 @@ package:
 source:
   url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_{{ version }}.tar.gz
   sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
+  patches:
+    - patches/0001-remove-unsupported-compiler-options-from-arm.patch
+    - patches/0002-add-rpath-for-hdr10plus-shared.patch
+    - patches/0003-do-not-look-for-strtok_r-on-win.patch
+    - patches/0004-force-10-12-bit-build-on-aarch64.patch
 
 build:
-  number: 3
-  run_exports:
-    # 2022/03/01 hmaarrfk
-    # Seems like the SO name changes every minor version
-    # https://abi-laboratory.pro/index.php?view=timeline&l=x265
-    - {{ pin_subpackage('x265', max_pin='x.x') }}
+  # Missing nasm for s390x
+  # win is not used downstream
+  skip: True  # [s390x or win]
+  number: 0
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - cmake
-    - nasm
+    - nasm  # [x86]
     - make  # [not win]
+    - patch     # [not win]
+    - m2-patch  # [win]
+    # Upstream is using git in cmake to detect source version and configure the build process
+    - git  # [not win]
 
 test:
   commands:
@@ -33,15 +40,16 @@ test:
     - if not exist %LIBRARY_PREFIX%\lib\pkgconfig\x265.pc exit 1  # [win]
     - if not exist %LIBRARY_PREFIX%\lib\libx265.lib exit 1        # [win]
     - if not exist %LIBRARY_PREFIX%\bin\libx265.dll exit 1        # [win]
+    - if not exist %LIBRARY_PREFIX%\bin\x265.exe exit 1          # [win]
     # Make sure not to install static libraries
-    - if not exist %LIBRARY_PREFIX%\lib\x265-static.lib exit 1        # [win]
-    - x265 --version                                 # [build_platform == target_platform]
-    - x265 --version 2>&1 | grep "8bit"              # [build_platform == target_platform and unix]
-    - x265 --version 2>&1 | grep "8bit+10bit+12bit"  # [build_platform == target_platform and (x86_64 or arm64) and unix]
+    - if exist %LIBRARY_PREFIX%\lib\x265-static.lib exit 1        # [win]
+    - x265 --version
+    - x265 --version 2>&1 | grep "8bit+10bit+12bit"
 
 about:
   home: https://www.x265.org/
   license: GPL-2.0-or-later
+  license_family: GPL
   license_file: COPYING
   summary: 'Open Source H.265/HEVC video encoder'
   description: |
@@ -53,3 +61,5 @@ about:
 extra:
   recipe-maintainers:
     - matthiasdiener
+  skip-lints:
+    - invalid_url
