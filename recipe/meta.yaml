@@ -59,6 +59,11 @@ about:
   doc_url: https://x265.readthedocs.io/
 
 extra:
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/78379
+    reason: Dependency for pdfplumber
+  recipe-maintainers:
+    - ianaobi
   recipe-maintainers:
     - matthiasdiener
   skip-lints:
